@@ -1,0 +1,11 @@
+<div class="filters_wrapp flex justify-center items-center h-full">
+  <form action="" class="filter_form" *ngIf="!loading">
+    <div class="inputGroup">
+      <label for="HSclass"></label>
+      <select name="HSclass" id="HSclass">
+        <option value="">Class...</option>
+        <option value="{{HSclass}}" *ngFor="let HSclass of info.classes">{{HSclass}}</option>
+      </select>
+    </div>
+  </form>
+</div>

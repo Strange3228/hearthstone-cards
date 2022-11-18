@@ -1,0 +1,21 @@
+.card__image{
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('PlaceholderCard.png');
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    z-index: 2;
+    filter: grayscale(1);
+  }
+  img{
+    position: relative;
+    z-index: 3;
+  }
+}
