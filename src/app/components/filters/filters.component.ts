@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {getInfoService} from "../../services/getInfo";
-import {IGEtInfo} from "../../models/IGetInfo";
+import {Filters, IGEtInfo} from "../../models/IGetInfo";
 
 @Component({
   selector: 'app-filters',
@@ -13,6 +13,13 @@ export class FiltersComponent implements OnInit {
 
   info: IGEtInfo
   loading: boolean = true
+
+  @Output() selectValues = new EventEmitter<Filters>()
+
+  filtersChanged(Hsclass: string, factions: string, qualities: string, races: string, type: string){
+    this.selectValues.emit({classes: Hsclass, factions: factions, qualities: qualities, races: races, type: type})
+  }
+
 
   ngOnInit(): void {
     this.getInfoService.getInfo().subscribe(data => {

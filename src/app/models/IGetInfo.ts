@@ -21,3 +21,11 @@ export interface ICard {
   type: string
   imageUrl: string
 }
+
+export interface Filters {
+  classes: string
+  factions: string
+  qualities: string
+  races: string
+  type: string
+}

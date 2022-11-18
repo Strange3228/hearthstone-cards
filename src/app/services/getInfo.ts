@@ -22,7 +22,7 @@ export class getInfoService {
     })
   }
 
-  getCardsByClass(dataBy: 'classes' | 'qualities' | 'factions' | 'types' | 'races' | 'all', className: string):Observable<any>{
+  getCardsByClass(dataBy: string, className: string):Observable<any>{
     if(dataBy === 'all'){
       return this.http.get<any>(`https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/`,{
         headers: this.headers

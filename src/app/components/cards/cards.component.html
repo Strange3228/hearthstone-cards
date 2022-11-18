@@ -1,7 +1,7 @@
 <div class="cards_wrapp flex items-center h-full flex-col justify-center">
   <div class="cards grid grid-cols-5 grid-rows-2 m-auto" *ngIf="!loading">
     <div class="card hover:scale-105 cursor-pointer transition-all card__image" *ngFor="let card of currentPageItems">
-      <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.cardId}}.png" class="" alt="">
+      <img (click)="showDetails(card)" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.cardId}}.png" class="" alt="">
     </div>
   </div>
   <form action="" class="pagination flex flex-col items-center mb-10">

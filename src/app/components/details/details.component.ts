@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {ICard} from "../../models/IGetInfo";
 
 @Component({
   selector: 'app-details',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class DetailsComponent implements OnInit {
 
   constructor() { }
+
+  @Input() detailsCard: ICard
 
   ngOnInit(): void {
   }

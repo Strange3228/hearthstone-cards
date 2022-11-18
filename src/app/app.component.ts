@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Filters, ICard} from "./models/IGetInfo";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'heartstone-cards';
+  filtersValue: Filters
+
+  updateFilters(newValue:Filters){
+    this.filtersValue = newValue
+  }
 }
