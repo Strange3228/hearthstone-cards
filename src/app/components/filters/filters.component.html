@@ -8,10 +8,10 @@
       </select>
     </div>
     <div class="inputGroup mb-6">
-      <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white font_cinzel" for="HSfaction">Pick Faction</label>
-      <select #factionSelect (change)="filtersChanged(classSelect.value, factionSelect.value, qualitySelect.value, raceSelect.value, typeSelect.value)" id="HSfaction" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="HSfaction">
-        <option value="">Faction...</option>
-        <option value="{{HSfaction}}" *ngFor="let HSfaction of info.factions">{{HSfaction}}</option>
+      <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white font_cinzel" for="HSraces">Pick Type</label>
+      <select #typeSelect (change)="filtersChanged(classSelect.value, factionSelect.value, qualitySelect.value, raceSelect.value, typeSelect.value)" id="HStypes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="HStypes">
+        <option value="">Types...</option>
+        <option value="{{HStypes}}" *ngFor="let HStypes of info.types">{{HStypes}}</option>
       </select>
     </div>
     <div class="inputGroup mb-6">
@@ -21,18 +21,18 @@
         <option value="{{HSqualities}}" *ngFor="let HSqualities of info.qualities">{{HSqualities}}</option>
       </select>
     </div>
-    <div class="inputGroup mb-6">
+    <div class="inputGroup mb-6 hidden">
+      <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white font_cinzel" for="HSfaction">Pick Faction</label>
+      <select #factionSelect (change)="filtersChanged(classSelect.value, factionSelect.value, qualitySelect.value, raceSelect.value, typeSelect.value)" id="HSfaction" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="HSfaction">
+        <option value="">Faction...</option>
+        <option value="{{HSfaction}}" *ngFor="let HSfaction of info.factions">{{HSfaction}}</option>
+      </select>
+    </div>
+    <div class="inputGroup mb-6 hidden">
       <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white font_cinzel" for="HSraces">Pick Race</label>
       <select #raceSelect (change)="filtersChanged(classSelect.value, factionSelect.value, qualitySelect.value, raceSelect.value, typeSelect.value)" id="HSraces" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="HSraces">
         <option value="">Races...</option>
         <option value="{{HSraces}}" *ngFor="let HSraces of info.races">{{HSraces}}</option>
-      </select>
-    </div>
-    <div class="inputGroup mb-6">
-      <label class="block mb-2 text-xl font-medium text-gray-900 dark:text-white font_cinzel" for="HSraces">Pick Type</label>
-      <select #typeSelect (change)="filtersChanged(classSelect.value, factionSelect.value, qualitySelect.value, raceSelect.value, typeSelect.value)" id="HStypes" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="HStypes">
-        <option value="">Types...</option>
-        <option value="{{HStypes}}" *ngFor="let HStypes of info.types">{{HStypes}}</option>
       </select>
     </div>
   </form>

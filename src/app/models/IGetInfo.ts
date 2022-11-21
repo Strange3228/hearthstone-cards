@@ -17,6 +17,7 @@ export interface ICard {
   locale: string
   name: string
   playerClass: string
+  rarity?: string
   text: string
   type: string
   imageUrl: string

@@ -26,6 +26,7 @@ export class CardsComponent implements OnInit, OnChanges {
     for(let i = 0; i < 10; i++){
       this.page > 1 ? this.currentPageItems[i] = this.cards[i + ((this.page - 1) * 10)] : this.currentPageItems[i] = this.cards[i]
     }
+    console.log(this.currentPageItems)
   }
 
   showDetails(card: ICard){
@@ -34,7 +35,7 @@ export class CardsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getInfoService.getCardsByClass('classes','Death Knight').subscribe(data => {
-      this.reloadCards(data)
+      this.reloadCards(data, '', '')
     })
   }
 
@@ -46,15 +47,24 @@ export class CardsComponent implements OnInit, OnChanges {
         this.page = 1
         this.totalPages = 1
         this.getInfoService.getCardsByClass('classes',this.filters.classes).subscribe(data => {
-          this.reloadCards(data)
+          this.reloadCards(data, this.filters.type, this.filters.qualities)
         })
       }
     }
   }
 
-  /*Function for setting data after successfull API get response */
-  reloadCards(data:any){
+  /*Function for setting data after successfull API GET response */
+  reloadCards(data:any, type: string, quality: string){
     this.cards = data;
+    console.log(this.cards)
+    if(type != ''){
+      this.cards = this.cards.filter(card => card.type === this.filters.type)
+    }
+    if(quality != ''){
+      this.cards = this.cards.filter(card => card.rarity === this.filters.qualities)
+    }
+    console.log(this.cards)
+    this.cards = this.cards.reverse()
     for(let i = 0; i < 10; i++){
       this.currentPageItems[i] = this.cards[i]
     }
