@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges, Output} from '@angular/core';
 import {getInfoService} from "../../services/getInfo";
 import {Filters, ICard} from "../../models/IGetInfo";
+import {count} from "rxjs";
 
 @Component({
   selector: 'app-cards',
@@ -16,6 +17,8 @@ export class CardsComponent implements OnInit, OnChanges {
   page: number = 1
   totalPages: number = 1;
   currentPageItems: ICard[] = []
+
+ //@Output() cardDetails:
 
   @Input() filters:Filters
 
@@ -57,12 +60,27 @@ export class CardsComponent implements OnInit, OnChanges {
   reloadCards(data:any, type: string, quality: string){
     this.cards = data;
     console.log(this.cards)
+
+    /*FILTERS*/
     if(type != ''){
       this.cards = this.cards.filter(card => card.type === this.filters.type)
     }
     if(quality != ''){
       this.cards = this.cards.filter(card => card.rarity === this.filters.qualities)
     }
+
+    /*REMOVE CARD DUPLICATES*/
+    let prevCardName: string = this.cards[0].name
+    let counter: number = 1;
+    while(counter < this.cards.length - 1){
+      if(prevCardName === this.cards[counter].name){
+        this.cards.splice(counter, 1)
+      } else {
+        prevCardName = this.cards[counter].name
+        counter++
+      }
+    }
+
     console.log(this.cards)
     this.cards = this.cards.reverse()
     for(let i = 0; i < 10; i++){
