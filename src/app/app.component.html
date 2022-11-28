@@ -1,5 +1,5 @@
 <div class="main flex">
   <app-filters class="filters" (selectValues)="updateFilters($event)"></app-filters>
-  <app-cards class="cards" [filters]="filtersValue"></app-cards>
-  <app-details class="details"></app-details>
+  <app-cards class="cards" (cardDetails)="updateCardDetails($event)" [filters]="filtersValue"></app-cards>
+  <app-details class="details" [detailsCard]="cardDetails"></app-details>
 </div>

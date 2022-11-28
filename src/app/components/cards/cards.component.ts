@@ -1,7 +1,6 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges, Output} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import {getInfoService} from "../../services/getInfo";
 import {Filters, ICard} from "../../models/IGetInfo";
-import {count} from "rxjs";
 
 @Component({
   selector: 'app-cards',
@@ -17,8 +16,9 @@ export class CardsComponent implements OnInit, OnChanges {
   page: number = 1
   totalPages: number = 1;
   currentPageItems: ICard[] = []
+  activeCardId: string = ""
 
- //@Output() cardDetails:
+  @Output() cardDetails = new EventEmitter<ICard>()
 
   @Input() filters:Filters
 
@@ -32,8 +32,9 @@ export class CardsComponent implements OnInit, OnChanges {
     console.log(this.currentPageItems)
   }
 
-  showDetails(card: ICard){
-    console.log(card)
+  showDetails(card: ICard, cardId: string){
+    this.cardDetails.emit(card)
+    this.activeCardId = cardId
   }
 
   ngOnInit(): void {
@@ -59,7 +60,6 @@ export class CardsComponent implements OnInit, OnChanges {
   /*Function for setting data after successfull API GET response */
   reloadCards(data:any, type: string, quality: string){
     this.cards = data;
-    console.log(this.cards)
 
     /*FILTERS*/
     if(type != ''){
@@ -69,25 +69,31 @@ export class CardsComponent implements OnInit, OnChanges {
       this.cards = this.cards.filter(card => card.rarity === this.filters.qualities)
     }
 
-    /*REMOVE CARD DUPLICATES*/
-    let prevCardName: string = this.cards[0].name
-    let counter: number = 1;
-    while(counter < this.cards.length - 1){
-      if(prevCardName === this.cards[counter].name){
-        this.cards.splice(counter, 1)
-      } else {
-        prevCardName = this.cards[counter].name
-        counter++
+    console.log(this.cards.length)
+    if(this.cards.length > 0) {
+      /*REMOVE CARD DUPLICATES*/
+      let prevCardName: string = this.cards[0].name
+      let counter: number = 1;
+      while (counter < this.cards.length - 1) {
+        if (prevCardName === this.cards[counter].name) {
+          this.cards.splice(counter, 1)
+        } else {
+          prevCardName = this.cards[counter].name
+          counter++
+        }
       }
-    }
 
-    console.log(this.cards)
-    this.cards = this.cards.reverse()
-    for(let i = 0; i < 10; i++){
-      this.currentPageItems[i] = this.cards[i]
+      console.log(this.cards)
+      this.cards = this.cards.reverse()
+      for (let i = 0; i < 10; i++) {
+        this.currentPageItems[i] = this.cards[i]
+      }
+      this.totalPages = this.cards.length / 10
+      this.cards.length % 10 === 0 ? this.totalPages = this.cards.length / 10 : this.totalPages = Math.floor(this.cards.length / 10) + 1
+    } else {
+      this.totalPages = this.cards.length / 10
+      this.cards.length % 10 === 0 ? this.totalPages = this.cards.length / 10 : this.totalPages = Math.floor(this.cards.length / 10) + 1
     }
     this.loading = false
-    this.totalPages = this.cards.length / 10
-    this.cards.length % 10 === 0 ? this.totalPages = this.cards.length / 10 : this.totalPages = Math.floor(this.cards.length / 10) + 1
   }
 }

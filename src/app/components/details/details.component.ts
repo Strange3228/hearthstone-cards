@@ -8,9 +8,10 @@ import {ICard} from "../../models/IGetInfo";
 })
 export class DetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor( ) {
+  }
 
-  @Input() detailsCard: ICard
+  @Input() detailsCard: any
 
   ngOnInit(): void {
   }

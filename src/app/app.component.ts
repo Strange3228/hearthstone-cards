@@ -9,8 +9,13 @@ import {Filters, ICard} from "./models/IGetInfo";
 export class AppComponent {
   title = 'heartstone-cards';
   filtersValue: Filters
+  cardDetails: ICard | null
 
   updateFilters(newValue:Filters){
+    this.cardDetails = null;
     this.filtersValue = newValue
+  }
+  updateCardDetails(card: ICard){
+    this.cardDetails = card
   }
 }

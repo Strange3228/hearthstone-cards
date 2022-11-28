@@ -1,3 +1,15 @@
-<div class="details_wrapp flex justify-center items-center h-full">
-  Hello its details
+<div class="details_wrapp flex justify-center items-center h-full pr-2.5 text-center">
+  <div *ngIf="detailsCard" class="text-white flex flex-col gap-4">
+    <p class="card_name font_cinzel text-3xl">{{detailsCard?.name}}</p>
+    <p class="card_info">Type: {{detailsCard?.type}}</p>
+    <p class="card_info">Card Set: {{detailsCard?.cardSet}}</p>
+    <p class="card_info">Rarity: {{detailsCard?.rarity}}</p>
+    <div *ngIf="detailsCard.type === 'Minion'" class="card_stats flex justify-between items-center">
+      <p>Health: {{detailsCard?.health}}</p>
+      <p>Attack: {{detailsCard?.attack}}</p>
+    </div>
+    <div *ngIf="detailsCard.mechanics" class="mechanics">
+      <p *ngFor="let key of detailsCard?.mechanics">{{key.name}}</p>
+    </div>
+  </div>
 </div>

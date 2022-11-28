@@ -14,6 +14,7 @@ export interface ICard {
   cardSet: string
   dbfId: number
   health: number
+  attack: number
   locale: string
   name: string
   playerClass: string
@@ -21,6 +22,10 @@ export interface ICard {
   text: string
   type: string
   imageUrl: string
+  img?: string
+  mechanics?: {
+    [key: string] : string
+  }
 }
 
 export interface Filters {

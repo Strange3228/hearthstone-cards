@@ -8,13 +8,15 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
+
   <div class="cards grid grid-cols-5 grid-rows-2 m-auto" *ngIf="!loading">
     <div class="card hover:scale-105 cursor-pointer transition-all" *ngFor="let card of currentPageItems">
-      <div class="card__image h-full w-full" *ngIf="card != undefined">
-        <img (click)="showDetails(card)" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.cardId}}.png" class="" alt="">
+      <div class="card__image h-full w-full transition-all {{card.cardId === activeCardId ? 'activeCard scale-125' : ''}}" *ngIf="card != undefined">
+        <img (click)="showDetails(card, card.cardId)" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.cardId}}.png" class="" alt="">
       </div>
     </div>
   </div>
+
   <form action="" class="pagination flex flex-col items-center absolute left-1/2 bottom-10 w-52 -translate-x-1/2">
     <p class="font_cinzel text-white text-2xl font-bold">Page {{page}} of {{loading ? '...' : totalPages}}</p>
     <div class="inline-flex items-center -space-x-px">
